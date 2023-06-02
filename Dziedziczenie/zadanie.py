@@ -1,49 +1,49 @@
 from abc import ABC, abstractmethod
+import math
 
-class Ksztalt(ABC):
+class Shape(ABC):
     def __init__(self):
         pass
     
     @abstractmethod
-    def oblicz_pole(self):
+    def calculate_area(self):
         pass
     
     @abstractmethod
-    def oblicz_obwod(self):
+    def calculate_perimeter(self):
         pass
 
-class Prostokat(Ksztalt):
-    def __init__(self, dlugosc, szerokosc):
+class Rectangle(Shape):
+    def __init__(self, length, width):
         super().__init__()
-        self.dlugosc = dlugosc
-        self.szerokosc = szerokosc
+        self._length = length
+        self._width = width
     
-    def oblicz_pole(self):
-        return self.dlugosc * self.szerokosc
+    def calculate_area(self):
+        return self._length * self._width
     
-    def oblicz_obwod(self):
-        return 2 * (self.dlugosc + self.szerokosc)
+    def calculate_perimeter(self):
+        return 2 * (self._length + self._width)
 
-class Kolo(Ksztalt):
-    def __init__(self, promien):
+class Circle(Shape):
+    def __init__(self, radius):
         super().__init__()
-        self.promien = promien
+        self._radius = radius
     
-    def oblicz_pole(self):
-        return 3.14 * self.promien**2
+    def calculate_area(self):
+        return math.pi * self._radius**2
     
-    def oblicz_obwod(self):
-        return 2 * 3.14 * self.promien
+    def calculate_perimeter(self):
+        return 2 * math.pi * self._radius
 
-# Tworzenie obiektów i wywoływanie metod
-prostokat = Prostokat(4, 6)
-kolo = Kolo(5)
+rectangle = Rectangle(4, 6)
+circle = Circle(5)
 
 print("Prostokąt:")
-print("Pole:", prostokat.oblicz_pole())
-print("Obwód:", prostokat.oblicz_obwod())
+print("Pole:", rectangle.calculate_area())
+print("Obwód:", rectangle.calculate_perimeter())
 
 print("Koło:")
-print("Pole:", kolo.oblicz_pole())
-print("Obwód:", kolo.oblicz_obwod())
+print("Pole:", circle.calculate_area())
+print("Obwód:", circle.calculate_perimeter())
 
